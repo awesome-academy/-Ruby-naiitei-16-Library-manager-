@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   validates :name, presence: true,
             length: {minimum: Settings.validation.min_length,
                      maximum: Settings.validation.max_length}
+  SORTS = ["name asc"].freeze
 
-  scope :search, ->(name){where "name LIKE ?", "%#{name}%"}
   has_many :books, through: :book_categories, dependent: :destroy
 end

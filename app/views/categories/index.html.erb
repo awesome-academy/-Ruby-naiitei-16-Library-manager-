@@ -2,18 +2,31 @@
 <h1 class="text-center mt-4"> <%= t ".list_categories" %></h1>
 
 <div class="search-form">
-  <%= form_with url: categories_path, local: true, method: :get, class: "search-form" do |f| %>
+  <%= search_form_for @search, class: "search-form" do |f| %>
     <div class="form-group has-search">
       <span class="fa fa-search form-control-feedback"></span>
-      <%= f.text_field :name, placeholder: t(".category_name"),class: "form-control" %>
+      <%= f.text_field :name_cont, placeholder: t(".category_name"),
+      class: "form-control" %>
     </div>
   <% end %>
 </div>
 
 <div class="container">
-  <%= render @categories %>
-</div>
-
-<div class="container pagination justify-content-center" >
-  <%= paginate @categories, theme: "twitter-bootstrap-3" %>
+  <% if @categories.blank? %>
+    <h2><%= t ".no_category" %></h2>
+  <% elsif logged_in? && current_user.admin? %>
+    <%= render "category_admin" %>
+    <div class="container pagination justify-content-center" >
+      <%= paginate @categories, theme: "twitter-bootstrap-3" %>
+    </div>
+  <% else %>
+    <div class="container">
+      <div class="row hidden-md-up">
+        <%= render @categories %>
+      </div>
+    </div>
+    <div class="container pagination justify-content-center" >
+      <%= paginate @categories, theme: "twitter-bootstrap-3" %>
+    </div>
+  <% end %>
 </div>

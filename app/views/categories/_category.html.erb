@@ -1,3 +1,7 @@
 <button type="button" class="btn btn-outline-info index">
-  <%= link_to category.name, current_user.admin? ? category : user_categories_show_path(category) %>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to category.name, category  %>
+  <% else %>
+    <%= link_to category.name, user_categories_show_path(category) %>
+  <% end %>
 </button>

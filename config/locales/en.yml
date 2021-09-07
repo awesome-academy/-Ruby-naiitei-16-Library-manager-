@@ -101,8 +101,22 @@ en:
   sign_up_now!: "Signup now!"
   new_user?: "New user?"
   categories:
+    category_admin:
+      new_cate: "【Create New Category】"
+      name: "CATEGOTY"
+      action: "ACTION"
+      view: "View"
+      edit_name: "Edit"
+      delete_category: "Delete"
+      are_you_sure: "Are you sure you want to delete the user account and all associated articles?"
     form:
-      name: "Name"
+      new_cate: "Create New Category"
+      category_name: "Category name"
+      submit: "Submit"
+    inline_form:
+      update_cate: "Update Category"
+      category_name: "Category name"
+      submit: "Update"
     edit:
       title: "Edit Category"
       save_change: "Save Change"
@@ -114,7 +128,7 @@ en:
       title: "Categories"
       list_categories: "Categories"
       category_name: "Category name"
-      search: "Search"
+      no_category: "No category information"
     new:
       title: "Create Category"
       create: "Create"

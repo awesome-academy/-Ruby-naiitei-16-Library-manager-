@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="table-row">
+    <%= form_with model: category, class: "divTableRow",
+      id: dom_id(category, "inline_form") do |f| %>
+      <%= render "shared/errors", object: f.object %>
+      <br/>
+      <div>
+        <h4 class="text-info"><b><%= t ".update_cate"%></b></h4>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-9">
+          <form class="row">
+            <div class="col-9 col-sm pr-sm-0">
+                <%= f.text_field :name, class: "form-control",placeholder: t(".category_name") %>
+            </div>
+            <br/>
+            <div class="col-9 col-sm-auto pl-sm-0">
+                <%= f.submit t(".submit"), class: "btn btn-primary" %>
+            </div>
+          </form>
+        </div>
+      </div>
+        <p>
+          <%= link_to t("link_return"), categories_path, class: "text-info" %>
+        </p>
+    <% end %>
+    <br/>
+  </div>
+</div>

@@ -1,12 +1,4 @@
 <%= provide :title, t(".title") %>
 <h1 class="text-center mt-4"><%= t ".category" %><%= @category.name %></h1>
-
-<!--set only admin can modify category-->
-<% if logged_in? && current_user.admin? %>
-  <div class="text-center mt-4">
-    <%= link_to t(".edit_name"), edit_category_path(@category), class: "btn btn-outline-info" %>
-    <%= link_to t(".delete_category"), category_path(@category), class: "btn btn-outline-danger", method: :delete,data: {confirm: t(".are_you_sure")} %>
-  </div>
-<% end %>
 <h3 class="text-center mt-4"><%= t ".list_book" %></h3>
 <%= render @category.books %>

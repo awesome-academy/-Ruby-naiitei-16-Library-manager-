@@ -1,0 +1,3 @@
+document.getElementById("<%= dom_id(@category) %>").insertAdjacentHTML("afterend",
+  "<%= j render "inline_form", category: @category %>")
+document.getElementById("<%= dom_id(@category) %>").style.display = "none"

@@ -102,8 +102,22 @@ vi:
   sign_up_now!: "Đăng ký ngay!"
   new_user?: "Chưa có tài khoản?"
   categories:
+    category_admin:
+      new_cate: "【Tạo thể loại mới】"
+      name: "THỂ LOẠI"
+      action: "THAO TÁC"
+      view: "Xem"
+      edit_name: "Sửa"
+      delete_category: "Xóa"
+      are_you_sure: "Bạn có chắc chắn muốn xóa tài khoản người dùng và tất cả các bài viết liên quan không?"
+    inline_form:
+      update_cate: "Cập nhật thể loại"
+      category_name: "Tên thể loại"
+      submit: "Cập Nhật"
     form:
-      name: "Tên"
+      new_cate: "Tạo thể loại mới"
+      category_name: "Tên thể loại"
+      submit: "Thêm"
     edit:
       title: "Sửa Category"
       save_change: "Lưu thay đổi"
@@ -115,7 +129,7 @@ vi:
       title: "Thể loại"
       list_categories: "Danh sách"
       category_name: "Thể loại"
-      search: "Tìm"
+      no_category: "Không có thông tin thể loại nào"
     new:
       title: "Tạo thể loại mới"
       create: "Thêm"

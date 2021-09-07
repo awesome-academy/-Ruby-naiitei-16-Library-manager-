@@ -63,7 +63,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "should redirect to user page" do
         new_user = assigns(:user)
-        response.should redirect_to new_user
+        expect(response).to redirect_to new_user
       end
 
       it "should flash success" do

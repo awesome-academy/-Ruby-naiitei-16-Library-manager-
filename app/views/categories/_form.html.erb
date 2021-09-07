@@ -1,8 +1,21 @@
-<%= form_for @category do |f| %>
-  <%= render "shared/errors", object: f.object %>
-
-  <%= f.label t ".name" %>
-  <%= f.text_field :name, class: "form-control" %>
-
-  <%= f.submit yield(:button_text), class: "btn btn-primary form" %>
-<% end %>
+<div class="container">
+  <%= form_for @category do |f| %>
+    <%= render "shared/errors", object: f.object %>
+    <div>
+      <h5 class="text-info"><b><%= t ".new_cate"%></b></h5>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-8">
+        <%= f.text_field :name, class: "form-control",placeholder: t(".category_name") %>
+      </div>
+      <div class="col col-lg-2">
+        <button class= "btn btn-primary"><%= t ".submit"%></button>
+      </div>
+    </div>
+    <br/>
+    <p>
+      <%= link_to t("link_return"), categories_path, class: "text-info" %>
+    </p>
+  <% end %>
+</div>

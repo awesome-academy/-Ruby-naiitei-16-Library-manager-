@@ -3,8 +3,9 @@ class CategoriesController < ApplicationController
   before_action :load_category, except: %i(index new create)
 
   def index
-    search_result = Category.search(params[:name])
-    @categories = search_result.page(params[:page]).per(Settings.validation.num)
+    @search = Category.ransack(params[:q])
+    @search.sorts = Category::SORTS if @search.sorts.empty?
+    @categories = @search.result.page(params[:page]).per Settings.validation.num
   end
 
   def new
@@ -13,12 +14,19 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new category_params
-    if @category.save
-      flash[:success] = t ".create_success"
-      redirect_to @category
-    else
-      flash[:danger] = t ".create_fail"
-      render :new
+    respond_to do |format|
+      if @category.save
+        format.html do
+          redirect_to @category
+          flash[:success] = t(".create_success")
+        end
+
+      else
+        format.html do
+          redirect_to @category
+          flash[:danger] = t(".create_fail")
+        end
+      end
     end
   end
 
@@ -27,12 +35,18 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def update
-    if @category.update category_params
-      flash[:success] = t ".edit_success"
-      redirect_to @category
-    else
-      flash[:danger] = t ".edit_fail"
-      render :edit
+    respond_to do |format|
+      if @category.update category_params
+        format.html do
+          redirect_to @category
+          flash[:success] = t(".edit_success")
+        end
+      else
+        format.html do
+          redirect_to @category
+          flash[:danger] = t(".edit_fail")
+        end
+      end
     end
   end
 

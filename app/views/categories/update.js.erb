@@ -1,0 +1,3 @@
+document.getElementById("<%= dom_id(@category, "inline_form") %>").remove()
+document.getElementById("<%= dom_id(@category) %>").innerHTML = "<%= j render @category %>"
+document.getElementById("<%= dom_id(@category) %>").style.display = "table-row"

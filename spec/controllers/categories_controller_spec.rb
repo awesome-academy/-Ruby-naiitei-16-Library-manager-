@@ -24,23 +24,6 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    context "When user is admin" do
-      before do
-        log_in admin
-        get :new
-      end
-
-      it "render template new" do
-        expect(response).to render_template :new
-      end
-
-      it "assign new object for Category" do
-        expect(assigns(:category)).to be_a_new(Category)
-      end
-    end
-  end
-
   describe "POST #create" do
     context "When user is admin" do
       before do
@@ -58,13 +41,13 @@ RSpec.describe CategoriesController, type: :controller do
           expect(Category.count).to eq(category_count + 1)
         end
 
-        it "should flash success" do
-          expect(flash[:success]).to eq I18n.t("categories.create.create_success")
-        end
-
         it "should redirect to category page" do
           new_category = assigns(:category)
           expect(response).to redirect_to new_category
+        end
+
+        it "should flash success" do
+          expect(flash[:success]).to eq I18n.t("categories.create.create_success")
         end
       end
 
@@ -81,8 +64,9 @@ RSpec.describe CategoriesController, type: :controller do
           expect(flash[:danger]).to eq I18n.t("categories.create.create_fail")
         end
 
-        it "render template new" do
-          expect(response).to render_template :new
+        it "render list category page" do
+          list_category = assigns(:category)
+          expect(response).to redirect_to list_category
         end
       end
     end
@@ -119,8 +103,9 @@ RSpec.describe CategoriesController, type: :controller do
           expect(flash[:danger]).to eq I18n.t("categories.update.edit_fail")
         end
 
-        it "render template edit" do
-          expect(response).to render_template :edit
+        it "render category page" do
+          category = assigns(:category_1)
+          expect(response).to redirect_to category_1
         end
       end
     end

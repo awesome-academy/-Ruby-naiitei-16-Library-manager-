@@ -1,0 +1,26 @@
+<div class="container">
+  <div id = "new-category">
+    <h4>
+      <%= link_to t(".new_cate"), new_category_path, remote: true %>
+    </h4>
+  </div>
+  <br/>
+  <ul class="responsive-table">
+    <li class="table-primary">
+      <div class="col col-1"><%= t ".name" %></div>
+      <div class="col col-3"><%= t ".action" %></div>
+    </li>
+    <% @categories.each do |category| %>
+      <%= content_tag :div, class: "divTableRow", id: dom_id(category) do %>
+        <li class="table-row">
+          <div class="col col-1"><%= category.name %></div>
+          <div class="col col-3">
+            <%= link_to t(".view"), category, class: "btn btn-outline-info" %>
+            <%= link_to t(".edit_name"), edit_category_path(category), class: "btn btn-outline-info", remote: true %>
+            <%= link_to t(".delete_category"), category, class: "btn btn-outline-danger", method: :delete,data: {confirm: t(".are_you_sure")} %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
