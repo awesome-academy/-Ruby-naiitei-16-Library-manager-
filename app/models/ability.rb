@@ -10,7 +10,7 @@ class Ability
     else
       can [:show, :index], :all
       can [:create, :new], User
-      can [:create, :new, :success], Request
+      can [:create, :new, :success, :not_returned], Request
     end
   end
 end

@@ -8,17 +8,10 @@
       <%= f.email_field :email, class: "form-control" %>
       <%= f.label t "sessions.new.password" %>
       <%= f.password_field :password, class: "form-control" %>
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-        </div>
-      <% end %>
-      <%= f.submit t("sessions.new.log_in"), class: "btn btn-primary" %>
+      <div class="m-3">
+        <%= f.submit t("sessions.new.log_in"), class: "btn btn-primary" %>
+      </div>
     <% end %>
     <p><%= t "new_user?" %><%= link_to t("sign_up_now!"), new_user_registration_path %></p>
-    <div class="forgot">
-      <%= render "devise/shared/links" %>
-    </div>
   </div>
 </div>

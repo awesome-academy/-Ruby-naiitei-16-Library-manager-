@@ -3,3 +3,5 @@
 //= require chosen-jquery
 //= require scaffold
 //= require social-share-button
+//= require Chart.bundle
+//= require chartkick

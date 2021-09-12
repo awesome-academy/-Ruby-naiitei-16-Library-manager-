@@ -2,7 +2,7 @@
 
 <h1 class="text-center"><%= t "users.new.sign_up" %></h1>
 <div class="row justify-content-center">
-  <div class="col-md-6 col-md-offset-3 px-5">
+  <div class="col-6 px-5">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="field">
@@ -28,8 +28,9 @@
           <%= f.file_field :image, accept: Settings.image_restricted_types %>
         </span>
       </div>
-      <%= f.submit t("users.new.create_my_account"), class: "btn btn-primary align-center create_account_button" %>
+      <div class="m-3">
+        <%= f.submit t("users.new.create_my_account"), class: "btn btn-primary align-center create_account_button" %>
+      </div>
     <% end %>
-    <%= render "devise/shared/links" %>
   </div>
 </div>

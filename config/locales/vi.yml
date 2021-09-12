@@ -221,8 +221,11 @@ vi:
       info_cards:
         quantity: "Số lượng: "
     index:
-      dashboard: "Bảng điều khiển"
+      dashboard: "Thống kê mượn sách"
       admin: "Quản lý"
+      last_month: "Tháng trước"
+      this_month: "Tháng này"
+      overall: "Tổng thể"
   requests:
     new:
       request_book: "Tạo yêu cầu mượn sách"
@@ -237,20 +240,24 @@ vi:
     please_login: "Xin hãy đăng nhập trước khi sử dụng chức năng này"
     index:
       borrowed_book: "Sách đã mượn"
+      search: "Tìm kiếm"
+      not_returned_books: "Xem sách chưa trả"
+      all_books: "Xem tất cả sách"
     request:
       date_start: "Ngày mượn: "
       date_end: "Hạn trả: "
       borrowing: "Đang mượn"
       returned: "Đã trả"
       expired: "Quá hạn"
-      you_sure?: "Bạn có chắc chắn?"
+      you_sure?: "Xác nhận trả sách?"
       return_book: "Trả sách"
-      borrow_user: "Người mượn"
+      borrow_user: "Người mượn: "
     create:
       date_end_invalid: "Ngày không hợp lệ. Ngày trả sách phải sau hôm nay"
       save_error: "Lỗi! Không thể tạo yêu cầu mượn sách."
     edit:
       borrowed_books_list: "Danh sách mượn sách"
+      user: "Email người dùng"
     already_borrowed: "Bạn đã mượn quyển sách này. Với mỗi loại sách, giới hạn mỗi người chỉ được mượn 1 quyển."
   reviews:
     create:

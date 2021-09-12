@@ -13,6 +13,8 @@ import './src/application.scss'
 require("packs/raty")
 require("packs/star")
 require("packs/index_star")
+require("chartkick")
+require("chart.js")
 
 Rails.start()
 Turbolinks.start()
