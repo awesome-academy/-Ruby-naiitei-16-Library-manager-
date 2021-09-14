@@ -1,7 +1,7 @@
-<% provide :title, t(".borrowed_book") %>
+<% provide :title, t("requests.index.borrowed_book") %>
 
 <h1>
-  <%= t ".borrowed_book" %>
+  <%= t "requests.index.borrowed_book" %>
 </h1>
 <%= search_form_for @q, url: requests_url do |f| %>
   <div class="body_search">
@@ -11,16 +11,15 @@
         <%= f.search_field :book_name_cont, class: "form-control" %>
       </div>
       <div class="col-3">
-        <%= f.submit t(".search") , class: "btn btn-outline-primary button-search" %>
+        <%= f.submit t("requests.index.search") , class: "btn btn-outline-primary button-search" %>
       </div>
     </div>
   </div>
-<% end %>
+<%end%>
 <div>
-  <%= link_to t("requests.index.not_returned_books"), not_returned_path,
+  <%= link_to t("requests.index.all_books"), user_requests_path,
               class:"btn btn-primary m-0" %>
 </div>
-
 <%= paginate @requests %>
 
 <ul class="requests">

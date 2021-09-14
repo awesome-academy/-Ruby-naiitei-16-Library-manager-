@@ -1,10 +1,26 @@
-<% provide :title, t(".borrowed_books_list") %>
+<% provide :title, t("requests.request.return_book") %>
 
 <h1>
-  <%= t ".borrowed_books_list" %>
+  <%= t "requests.request.return_book" %>
 </h1>
 
-<%= paginate @requests %>
+<%= search_form_for @q, url: return_book_list_url do |f| %>
+  <div class="body_search">
+    <div class="row">
+      <div class="col-5">
+        <%= f.label t(".user") %>
+        <%= f.search_field :user_email_cont, class: "form-control" %>
+      </div>
+      <div class="col-5">
+        <%= f.label t("books.search_form.book_name") %>
+        <%= f.search_field :book_name_cont, class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <%= f.submit t("requests.index.search"), class: "btn btn-outline-primary button-search" %>
+      </div>
+    </div>
+  </div>
+<%end%>
 
 <ul class="requests">
   <%= render @requests %>

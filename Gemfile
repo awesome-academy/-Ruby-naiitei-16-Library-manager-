@@ -8,6 +8,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "bootstrap-kaminari-views"
 gem "bootstrap_form"
 gem "cancancan"
+gem "chartkick"
 gem "chosen-rails"
 gem "config"
 gem "devise"

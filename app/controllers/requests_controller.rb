@@ -5,13 +5,15 @@ class RequestsController < ApplicationController
   before_action :load_book, only: %i(create new)
 
   def index
-    @requests = current_user.requests.newest.page(params[:page])
-                            .per Settings.return_book.page_limit
+    @q = current_user.requests.newest.ransack(params[:q])
+    @requests = @q.result.page(params[:page]).per Settings.return_book
+                                                          .page_limit
   end
 
   def edit
-    @requests = Request.newest.page(params[:page])
-                       .per Settings.return_book.page_limit
+    @q = Request.newest.ransack(params[:q])
+    @requests = @q.result.page(params[:page]).per Settings.return_book
+                                                          .page_limit
   end
 
   def new
@@ -33,10 +35,15 @@ class RequestsController < ApplicationController
   def success; end
 
   def update
-    @request = Request.find_by book_id: params[:book_id],
-                               user_id: params[:user_id]
+    @request = Request.find params[:request_id]
     @request.returned!
     redirect_to return_book_list_path
+  end
+
+  def not_returned
+    @q = current_user.requests.not_returned.newest.ransack(params[:q])
+    @requests = @q.result.page(params[:page]).per Settings.return_book
+                                                          .page_limit
   end
 
   private

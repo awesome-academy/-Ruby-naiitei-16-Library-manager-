@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       resources :requests
     end
     resources :requests, only: :index
+    get "/not_returned", to: "requests#not_returned"
     get "/success", to: "requests#success"
   end
 end

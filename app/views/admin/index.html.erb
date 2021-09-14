@@ -1,7 +1,20 @@
 <% provide :title, t(".admin") %>
 
-<h2 class="py-3"><%= t ".dashboard" %></h2>
+<h1 class="py-3"><%= t ".dashboard" %></h1>
 <div class="row">
-  <%= render "admin/shared/info_cards", {title: t("layouts.admin_header.categories"), path: categories_path, model: Category}%>
-  <%= render "admin/shared/info_cards", {title: t("layouts.admin_header.books"), path: books_path, model: Book}%>
+  <div class="col-6">
+    <h3><%= t(".last_month") %></h3>
+    <%= pie_chart Request.get_month(Date.current.month - 1).group(:status).count,
+                  colors: %w[#28a745 #ffc107 #dc3545] %>
+  </div>
+  <div class="col-6">
+    <h3><%= t(".this_month") %></h3>
+    <%= pie_chart Request.get_month(Date.current.month).group(:status).count,
+                  colors: %w[#dc3545 #28a745 #ffc107] %>
+  </div>
+  <div class="col-6">
+    <h3><%= t(".overall") %></h3>
+    <%= pie_chart Request.group(:status).count,
+                  colors: %w[#dc3545 #28a745 #ffc107] %>
+  </div>
 </div>

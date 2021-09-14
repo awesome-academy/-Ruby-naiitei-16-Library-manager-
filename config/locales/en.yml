@@ -208,15 +208,18 @@ en:
       created_at: "Created at"
     search_form:
       search: "Book Management"
-      book_name: "Book name"
+      book_name: "Book's name"
       author_name: "Author"
   admin:
     shared:
       info_cards:
         quantity: "Quantity: "
     index:
-      dashboard: "Dashboard"
+      dashboard: "Book borrow statistics"
       admin: "Admin"
+      last_month: "Last month"
+      this_month: "This month"
+      overall: "Overall"
   requests:
     new:
       request_book: "Create request to borrow books"
@@ -231,13 +234,16 @@ en:
     please_login: "Please login before using this feature"
     index:
       borrowed_book: "Borrowed books"
+      search: "Search"
+      not_returned_books: "View not returned books"
+      all_books: "View all books"
     request:
       date_start: "Borrowing day: "
       date_end: "Due date: "
       borrowing: "Borrowing"
       returned: "Returned"
       expired: "Expired"
-      you_sure?: "Are you sure?"
+      you_sure?: "Confirm returning book?"
       return_book: "Return book"
       borrow_user: "User: "
     create:
@@ -245,6 +251,7 @@ en:
       save_error: "Error! Can't create request."
     edit:
       borrowed_books_list: "Borrowed books list"
+      user: "User's email"
     already_borrowed: "You have already borrowed this book. Borrowing book of the same type limited to one per customer."
   reviews:
     create:

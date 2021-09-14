@@ -1,27 +1,35 @@
 <li class="border border-dark m-3 p-3">
-  <%= link_to request.book.name, request.book, class: "h3 text-dark"%>
-  <div>
-    <strong><%= t ".borrow_user" %></strong>
-    <%= request.name %>
-    <br>
-    <strong><%= t ".date_start" %></strong>
-    <%= request.date_start.strftime(Settings.date_format) %>
-    <br>
-    <strong><%= t ".date_end" %></strong>
-    <%= request.date_end.strftime(Settings.date_format) %>
-    <br>
-    <% if request.borrowing? %>
-      <p class="text-warning font-weight-bold"><%= t ".borrowing" %></p>
-    <% elsif request.returned? %>
-      <p class="text-success font-weight-bold"><%= t ".returned" %></p>
-    <% else %>
-      <p class="text-danger font-weight-bold"><%= t ".expired" %></p>
+  <div class="row">
+    <div class="col-8">
+      <%= link_to request.book.name, request.book, class: "h3 text-dark"%>
+      <br>
+      <% if current_user.admin? %>
+        <strong><%= t ".borrow_user" %></strong><%= request.user_email %>
+        <br>
     <% end %>
+      <strong><%= t ".date_start" %></strong>
+      <%= request.date_start.strftime(Settings.date_format) %>
+      <br>
+      <strong><%= t ".date_end" %></strong>
+      <%= request.date_end.strftime(Settings.date_format) %>
+      <br>
+      <% if current_user.admin? && admin_page? && !request.returned? %>
+        <div class="mt-3">
+          <%= link_to t(".return_book"), return_book_path(request_id: request.id),
+                        method: :patch,
+                        data: {confirm: t(".you_sure?")},
+                        class:"btn btn-primary m-0" %>
+        </div>
+    <% end %>
+    </div>
+    <div class="status-wrapper col-3">
+      <% if request.borrowing? %>
+        <p class="status text-warning font-weight-bold"><%= t ".borrowing" %></p>
+      <% elsif request.returned? %>
+        <p class="status text-success font-weight-bold"><%= t ".returned" %></p>
+      <% else %>
+        <p class="status text-danger font-weight-bold"><%= t ".expired" %></p>
+      <% end %>
+    </div>
   </div>
-  <% if current_user.admin? && admin_page? && !request.returned? %>
-    <%= link_to t(".return_book"), return_book_path(user_id: request.user_id, book_id: request.book_id),
-                  method: :patch,
-                  req: {confirm: t(".you_sure?")},
-                  class:"btn btn-primary m-0" %>
-  <% end %>
 </li>
