@@ -5,22 +5,28 @@
     </h4>
   </div>
   <br/>
-  <ul class="responsive-table">
-    <li class="table-primary">
-      <div class="col-md-8"><b><%= t ".name" %></b></div>
-      <div class="col-md-4"><b><%= t ".action" %></b></div>
-    </li>
-    <% @categories.each do |category| %>
-      <%= content_tag :div, class: "divTableRow", id: dom_id(category) do %>
-        <li class="table-row">
-          <div class="col-md-8"><%= category.name %></div>
-          <div class="col-md-4">
-            <%= link_to t(".view"), category, class: "btn btn-outline-info" %>
-            <%= link_to t(".edit_name"), edit_category_path(category), class: "btn btn-outline-info", remote: true %>
-            <%= link_to t(".delete_category"), category, class: "btn btn-outline-danger", method: :delete,data: {confirm: t(".are_you_sure")} %>
-          </div>
-        </li>
+  <div class="book-admin">
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1"><%= t ".STT" %></div>
+        <div class="col col-2"><%= t ".name" %></div>
+        <div class="col col-5"><%= t ".created_at" %></div>
+        <div class="col col-6"><%= t ".action" %></div>
+      </li>
+      <% @categories.each_with_index do |category, index| %>
+        <%= content_tag :div, class: "divTableRow", id: dom_id(category) do %>
+          <li class="table-row">
+            <div class="col col-1"><%= index + 1 %></div>
+            <div class="col col-2"><%= category.name %></div>
+            <div class="col col-5"><%= category.created_at.strftime(Settings.time_format) %></div>
+            <div class="col col-6">
+              <%= link_to t(".view"), category, class: "btn btn-outline-info" %>
+              <%= link_to t(".edit_name"), edit_category_path(category), class: "btn btn-outline-info", remote: true %>
+              <%= link_to t(".delete_category"), category, class: "btn btn-outline-danger", method: :delete,data: {confirm: t(".are_you_sure")} %>
+            </div>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

@@ -99,3 +99,6 @@ yarn-debug.log*
 .yarn-integrity
 
 coverage/*
+
+# Ignore application configuration
+/config/application.yml

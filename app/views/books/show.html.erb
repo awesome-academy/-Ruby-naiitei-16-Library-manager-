@@ -1,58 +1,61 @@
 <%= provide :title, t(".title") %>
 <h1 class="text-center mt-4">
-  <%= t ".book" %>
+  <%= @book.name %>
 </h1>
-<!--set only admin can modify category-->
-<% if user_signed_in? && current_user.admin? %>
-  <div class="text-center mt-4">
-    <%= link_to t(".edit_name"), edit_book_path(@book), class: "btn btn-outline-info" %>
-    <%= link_to t(".delete_book"), @book, class: "btn btn-outline-danger" , method: :delete, data: {confirm:
-          t(".are_you_sure")} %>
-  </div>
-<% end %>
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-10 mt-4">
-      <div class="card text-center shadow mb-5 bg-white rounded">
+  <div class="row justify-content-md-center shadow mb-5 bg-white rounded">
+    <div class="col-6 mt-4 ">
+      <div class="card text-center">
         <div class="card-header font-italic text-left show_book">
           <img src="https://loremflickr.com/320/240/paris" />
         </div>
-        <div class="card-body">
-          <div class="card-text text-left">
-            <h3>
-              <%= t(".name")%>: <%= @book.name %>
-            </h3>
-            <p>
-              <%= t(".author")%>: <%= @book.author_name %>
-            </p>
-            <p>
-              <%= t(".detail")%>: <%= @book.detail %>
-            </p>
-            <p>
-              <%= t(".category")%>: <% @book.categories.each do |category|%>
-                <%= link_to category.name, current_user.admin? ? category : user_categories_show_path(category), class: "btn btn-success" %>
-              <% end %>
-            </p>
-            <p>
-              <%= t(".rate")%>: <%= @rate.nil?? t(".no_cmt") : @rate %>
-              <%= image_tag("star.png", style: "width:24px;") %>
-            </p>
-          </div>
+      </div>
+    </div>
+    <div class="col-6 mt-4">
+      <div class="card-body">
+        <div class="card-text text-left">
+          <h3>
+            <%= t(".name")%>: <%= @book.name %>
+          </h3>
+          <p>
+            <%= t(".author")%>: <%= @book.author_name %>
+          </p>
+          <p>
+            <%= t(".detail")%>: <%= @book.detail %>
+          </p>
+          <p>
+            <%= t(".category")%>: <% @book.categories.each do |category|%>
+              <%= link_to category.name, current_user.admin? ? category : user_categories_show_path(category),
+                    class: "btn btn-outline-info" %>
+            <% end %>
+          </p>
+          <p>
+            <%= t(".rate")%>: <%= @rate.nil? ? t(".no_cmt") : @rate %>*
+          </p>
         </div>
-        <%= social_share_button_tag(@book.name, :allow_sites=> %w(twitter facebook)) %>
-        <% unless admin_page? %>
+      </div>
+      <!--set only admin can modify category-->
+      <div class="edit-button">
+        <% if current_user.admin? %>
+          <div class="text-center mt-4">
+            <%= link_to t(".edit_name"), edit_book_path(@book), class: "btn btn-outline-warning" %>
+            <%= link_to t(".delete_book"), @book, class: "btn btn-outline-danger" , method: :delete, data: {confirm:
+          t(".are_you_sure")} %>
+          </div>
+        <% else %>
+          <%= social_share_button_tag(@book.name, :allow_sites=> %w(twitter facebook)) %>
           <%= link_to t(".borrow_book"), new_book_request_path(@book), class: "btn btn-lg btn-primary" %>
         <% end %>
-        <div class="card-footer text-muted">
-          <small>
-            <%= t ".created" %>
-            <%= time_ago_in_words(@book.created_at) %>
-            <%= t ".ago" %>,
-            <%= t ".edited" %>
-            <%= time_ago_in_words(@book.updated_at) %>
-            <%= t ".ago" %>
-          </small>
-        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <small>
+          <%= t ".created" %>
+          <%= time_ago_in_words(@book.created_at) %>
+          <%= t ".ago" %>,
+          <%= t ".edited" %>
+          <%= time_ago_in_words(@book.updated_at) %>
+          <%= t ".ago" %>
+        </small>
       </div>
     </div>
   </div>

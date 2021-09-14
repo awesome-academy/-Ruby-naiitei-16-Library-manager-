@@ -1,5 +1,5 @@
 require "rails_helper"
-
+require "support/devise"
 RSpec.describe User, type: :model do
   let(:user){FactoryBot.create :user}
   let(:user2){FactoryBot.create :user, email: "Abcxyz2@gmail.com"}

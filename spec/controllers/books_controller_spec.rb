@@ -1,5 +1,6 @@
 require "rails_helper"
 require "support/factory_bot"
+require "support/devise"
 include SessionsHelper
 include AdminHelper
 
@@ -63,8 +64,8 @@ RSpec.describe BooksController, type: :controller do
 
   describe "GET #new" do
     context "when admin logged in" do
+      login_admin
       before do
-        log_in admin
         get :new
       end
 
@@ -74,8 +75,8 @@ RSpec.describe BooksController, type: :controller do
     end
 
     context "when user logged in" do
+      login_user
       before do
-        log_in user
         get :new
       end
 
@@ -90,7 +91,7 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe "POST #create" do
-    before { log_in admin }
+    login_admin
     let!(:book_count) { Book.count }
 
     context "with valid attributes" do
@@ -143,8 +144,7 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe "PATCH #update" do
-    before { log_in admin }
-
+    login_admin
     context "with valid attributes" do
       before do
         category_id = []
@@ -189,8 +189,7 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    before { log_in admin }
-
+    login_admin
     context "destroy successfully" do
       it do
         book

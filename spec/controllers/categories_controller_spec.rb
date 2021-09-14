@@ -1,14 +1,14 @@
 require "rails_helper"
+require "support/factory_bot"
+require "support/devise"
 include SessionsHelper
 
 RSpec.describe CategoriesController, type: :controller do
-  let(:admin){FactoryBot.create :user,email: "abc@gmail.com", role: "admin"}
-  let(:user){FactoryBot.create :user}
-  let!(:category_1){FactoryBot.create :category, name: "hi"}
+  let!(:category_1) {FactoryBot.create :category, name: "hi"}
 
   describe "GET #index" do
     context "when has category" do
-      before{get :index}
+      before {get :index}
 
       it "render template index" do
         expect(response).to render_template :index
@@ -16,7 +16,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     context "when don't have category" do
-      before{get :index}
+      before {get :index}
 
       it "render template index" do
         expect(response).to render_template :index
@@ -26,15 +26,13 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe "POST #create" do
     context "When user is admin" do
-      before do
-        sign_in(admin)
-      end
+      login_admin
 
-      let!(:category_count){Category.count}
+      let!(:category_count) { Category.count }
 
       context "when job information is valid" do
         before do
-          post :create, params: {category: { "name": "hay"}}
+          post :create, params: {category: { "name": "hay" }}
         end
 
         it "When create successfully" do
@@ -48,7 +46,7 @@ RSpec.describe CategoriesController, type: :controller do
 
       context "when params is invalid" do
         before do
-          post :create, params: {category: { "name"=>"" }}
+          post :create, params: {category: { "name" => "" }}
         end
 
         it "don't change number of category" do
@@ -69,9 +67,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe "PATCH #update" do
     context "When user is admin" do
-      before do
-        sign_in(admin)
-      end
+      login_admin
 
       context "when update successfully" do
         before do
@@ -85,13 +81,13 @@ RSpec.describe CategoriesController, type: :controller do
 
         it "should redirect to category page" do
           category = assigns(:category_1)
-          expect(response).to redirect_to category_1
+          expect(response).to redirect_to categories_path
         end
       end
 
       context "when update failed" do
         before do
-          patch :update, params: {id: category_1.id, category: { "name": ""}}
+          patch :update, params: {id: category_1.id, category: {"name": ""}}
         end
 
         it "flash update fail" do
@@ -100,7 +96,7 @@ RSpec.describe CategoriesController, type: :controller do
 
         it "render category page" do
           category = assigns(:category_1)
-          expect(response).to redirect_to category_1
+          expect(response).to redirect_to categories_path
         end
       end
     end
@@ -108,10 +104,10 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe "DELETE #detroy" do
     context "When user is admin" do
-      let!(:category_count){Category.count}
+      login_admin
+      let!(:category_count) { Category.count }
       before do
-        sign_in(admin)
-        delete :destroy, params: {id: category_1.id}
+        delete :destroy, params: { id: category_1.id }
       end
 
       context "When destroy successfully" do

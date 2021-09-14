@@ -1,7 +1,7 @@
 <% provide :title, t(".fore_title") %>
 
 <% unless user_signed_in? %>
-  <article class="background">
+  <div class="background">
     <div class ="box">
       <h2>
         <%= t ".intro_1" %>
@@ -11,7 +11,7 @@
         <%= link_to t(".signup"),new_user_path,class: "btn btn-lg btn-primary signup" %>
       </p>
     </div>
-  </article>
+  </div>
 <% else %>
   <div class="center jumbotron ">
     <h2 class="font-weight-bold text-info">Newfeed</h2>

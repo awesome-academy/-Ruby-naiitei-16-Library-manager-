@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     @category = Category.new category_params
     respond_to do |format|
       format.html do
-        redirect_to @category
+        redirect_to categories_path
         if @category.save
           flash[:success] = t(".create_success")
         else
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       format.html do
-        redirect_to @category
+        redirect_to categories_path
         if @category.update category_params
           flash[:success] = t(".edit_success")
         else

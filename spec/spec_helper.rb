@@ -8,6 +8,7 @@ class SimpleCov::Formatter::MergedFormatter
     SimpleCov::Formatter::RcovFormatter.new.format(result)
   end
 end
+
 SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
 
 SimpleCov.start "rails"

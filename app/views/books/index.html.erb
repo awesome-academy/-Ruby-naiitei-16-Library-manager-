@@ -12,9 +12,6 @@
 <% elsif user_signed_in? && current_user.admin? %>
   <h2><%= t ".no_book" %></h2>
   <%= render "book_admin" %>
-  <div class="d-flex justify-content-center">
-    <%= paginate @books %>
-  </div>
 <% else %>
   <div class="container">
     <div class="row hidden-md-up">

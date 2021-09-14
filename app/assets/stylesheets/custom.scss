@@ -344,6 +344,10 @@ input {
   display: flex;
 }
 
+.edit-button {
+  margin-bottom: 10px;
+}
+
  /* Follow Users */
 .show-fll{
   margin-top: -80%;
@@ -552,7 +556,7 @@ h2 {
 
   .table-header {
     background-color: #95A5A6;
-    font-size: 14px;
+    font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
   }
@@ -611,6 +615,9 @@ h2 {
       }
     }
   }
+  .col-text {
+    margin: auto;
+  }
 }
 
 .return {
@@ -657,8 +664,7 @@ h2 {
 
 /*home page*/
 .background {
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
